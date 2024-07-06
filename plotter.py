@@ -1,7 +1,7 @@
 import queue
 import tkinter as tk
 
-from config import camera, plot
+from config import camera, plotter
 
 
 class Plotter:
@@ -9,9 +9,9 @@ class Plotter:
         self,
         title,
     ):
-        self.span = int(plot['span'])
-        self.fps = int(camera['fps'])
-        self.queue = queue.Queue(maxsize=self.span)
+        self.span   = int(plotter['span'])
+        self.fps    = int(camera['fps'])
+        self.queue  = queue.Queue(maxsize=self.span)
         
         self.root = tk.Tk()
         self.root.title(title)

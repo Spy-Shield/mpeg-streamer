@@ -12,7 +12,6 @@ app     = Flask(__name__)
 camera  = MPEGCamera()
 plotter = Plotter(
     title='Real-Time Frame Lengths',
-    
 )
 
 @app.route('/video')
