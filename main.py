@@ -1,6 +1,7 @@
 import signal
 import sys
 import threading
+import time
 from flask import Flask, Response
 
 from config import server, camera
@@ -14,13 +15,16 @@ plotter = Plotter(
     title='Real-Time Frame Lengths',
 )
 
-@app.route('/video')
-def video():
-    def generate():
+def generate():
+    with open('len.log', 'a') as log:
         for frame in camera.stream():
+            log.write(f'{time.time()} @ {len(frame)}\n')
             if plotter:
                 plotter.update(len(frame))
             yield frame
+
+@app.route('/video')
+def video():
     return Response(generate(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 def signal_handler(sig, frame):
