@@ -1,0 +1,12 @@
+[Unit]
+Description=MPEG Streamer
+After=network.target
+
+[Service]
+User=arrow
+WorkingDirectory=/home/arrow/mpeg-streamer
+ExecStart=python3 main.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
